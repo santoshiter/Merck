@@ -12,71 +12,123 @@
 
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script>
-      function openNav() {
-          document.getElementById("mySidenav").style.width = "250px";
-      }
-      
-      function closeNav() {
-          document.getElementById("mySidenav").style.width = "0";
-      }
-  </script>
 </head>
 <body>
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
+<!-- mobile menu  starts -->
+<div class="visible-xs">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">
+                    <img class="img-responsive" src="images/logo.png"  alt="logo">
+                </a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">PRESENTATION</a></li>
+                    <li><a href="#EXPLORE">EXPLORE</a></li>
+                </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
 </div>
-      
-  <div class="header">
-      <span style="font-size:30px;cursor:pointer; color:#fff;" onclick="openNav()"><i class="fa fa-bars" aria-hidden="true"></i></span>
-  </div>
- <div class="main container-fluid ">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding bgGreen">
-    <!-- searchPanel starts  -->
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding searchPanel">
-          searchPanel
-      </div>
-      <!-- searchPanel ends  -->
-      <!-- folder list starts -->
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding folderList">
-        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 noPadding">
-            folderList
+<!-- mobilre menu ends -->
+
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bgP noPadding hidden-xs">
+<div class="container noPadding">
+    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 logo noPadding ">
+        <img class="img-responsive" src="images/logo.png"  alt="logo">
+    </div>
+    <div class="col-xs-6 col-sm-10 col-md-10 col-lg-10 noPadding ">
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 noPadding ">
+            <img class="img-responsive" src="images/logocurve.png" alt="logo curve">
         </div>
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 noPadding">
-          select list
+        <div class=" col-sm-6 col-md-9 col-lg-9 noPadding hidden-xs">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding">
+                    <div class="col-sm-offset-3 col-md-offset-8 col-lg-offset-8 col-xs-9 col-sm-9 col-md-4 col-lg-4 noPadding user">
+                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8  ">
+                            Hello, <span>Jhon</span>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 noPadding">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 noPadding">
+                            <i class="fa fa-bell" aria-hidden="true"></i>
+                        </div>
+                    </div>
+            </div>
         </div>
     </div>
-    <!-- folder list ends -->
-    <!-- slide thumb starts -->
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding divHight">
-        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 noPadding">slide thumb</div>
-        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 noPadding">slide thumb</div>
-        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 noPadding">slide thumb</div>
-        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 noPadding">slide thumb</div>
-    </div>
-     <!-- slide thumb ends -->
-     <!-- footer stars here -->
-     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding footer ">
-       footer text
-     </div>
-     <!-- footer stars ends -->
-  </div>
+</div> 
+</div>
+
+ <div class="main col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding ">
+     <!-- searchPanel starts  -->
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 " id="searchPanel">
+        <div class="container noPadding">
+            <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2 noPadding active hidden-xs"><a href="#">DASHBOARD</a></div>
+            <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2 hidden-xs"><a href="#">EXPLORE</a></div>
+            <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2 hidden-xs"><a href="#">REPORT</a></div>
+        </div>
+        </div>
+        <!-- searchPanel ends  -->
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding mdMarginTop">
+        <div class="container noPadding">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding ">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="panel with-nav-tabs panel-default">
+                                        <div class="panel-heading">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active col-xs-5 col-sm-5 col-md-5 col-lg-5"><a href="#" >UPLOAD NEW PRESENTATION</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding stripBorder textCenter">
+                                                <button type="button" class="btn lgMarginTop">Select File</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        </div>
+   
  </div>
- <div class="slideTray">
-   <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 noPadding">arrow</div>
-    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 noPadding divHight">
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 noPadding">slide thumb</div>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 noPadding">slide thumb</div>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 noPadding">slide thumb</div>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 noPadding">slide thumb</div>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 noPadding">slide thumb</div>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 noPadding">slide thumb</div>
+
+
+
+<!-- footer stars here -->
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding">
+    <div class="container noPadding">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding footer ">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                <ul>
+                    <li>Home</li>
+                    <li>Presentation</li>
+                    <li>Explore</li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 ">
+                <p>Etiam sit amet erat et mi facilisis posuere. Etiam et libero cursus, 
+                tempor ligula non, elementum urna. Nullam ut arcu bibendum, pellentesque quam id, rutrum augue. </p>
+                <p>Etiam sit amet erat et mi facilisis posuere. Etiam et libero cursus, 
+                tempor ligula non, elementum urna. Nullam ut arcu bibendum, pellentesque quam id, rutrum augue. </p>
+            </div>  
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 ">
+                <img class="img-responsive fRight" src="images/footerlogo.png" width="147px" alt="logo curve">
+            </div>
+        </div>
     </div>
-    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 noPadding">arrow</div>
- </div>
+</div>
+<!-- footer stars ends -->
 </body>
 </html>
