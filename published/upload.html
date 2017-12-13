@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <title></title>
+    <style type="text/css">
+        body {
+            margin:0;
+            padding:0;
+            background-image:url(image/bg.jpg);
+            background-size:cover;
+            font-family:sans-serif;
+        }
+        div {
+             width:400px;
+              position:absolute;
+              top:50%;
+              left:50%;
+              background:rgba(0,0,0,0.2);
+              transform:translate(-50%,-50%);
+        }
+      
+        table {
+            margin:0 auto;
+            padding:8px;
+        }
+     
+        h1 {
+            text-align:center;
+        }
+        td {
+            padding:10px;
+        }
+        td.lcolumn {
+            text-align:right;
+        }
+        td.rcolumn {
+            text-align:left;
+        }
+        button {
+            text-decoration:none;
+            padding:8px 8px;
+            border-radius:6px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Presentation Table</h1>
+        <form id="uploadForm">
+            <table>
+                <tr>
+                    <td class="lcolumn"><label for="fname">Name:</label></td>
+                    <td class="rcolumn"><input type="text" name="pname" required /></td>
+                </tr>
+                <tr>
+                    <td class="lcolumn"><label for="filename">File:</label></td>
+                    <td class="rcolumn"><input type="file" name="file" required accept=".ppt,.pptx" /> </td>
+                </tr>
+                <tr>
+                    <td class="lcolumn"><label for="metatag">Tag:</label></td>
+                    <td class="rcolumn"><input type="text" name="metatag" value="test,presentation" required /></td>
+                </tr>
+                <tr>
+                    <td class="lcolumn"><label for="category">Category:</label></td>
+                    <td class="rcolumn"><input type="number" required value="10" name="categoryid" /></td>
+                </tr>
+                <tr>
+                    <td class="lcolumn"><label for="folder">Folder:</label></td>
+                    <td class="rcolumn"> <input type="number" required value="100" name="folderid" /></td>
+                </tr>
+                <tr>
+
+                    <td colspan="2" align="center"><button type="submit">Submit</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><progress id="pBar" value="0" max="100"></progress></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script type='text/javascript'>
+    /* attach a submit handler to the form */
+    $("#uploadForm").submit(function (event) {
+
+        /* stop form from submitting normally */
+        event.preventDefault();
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: 'service/uploadPresentation.aspx',
+            type: 'POST',
+            data: formData,
+            success: function (data) {
+                alert("complete");
+            },
+            xhr: function () {  // custom xhr
+                var xhr = new window.XMLHttpRequest();
+
+                xhr.upload.addEventListener("progress", function (evt) {
+                    if (evt.lengthComputable) {
+                        var percentComplete = evt.loaded / evt.total;
+                        percentComplete = parseInt(percentComplete * 100);
+                        $("#pBar").val(percentComplete);
+                    }
+                }, false);
+                return xhr;
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
+    </script>
+</body>
+</html>

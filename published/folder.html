@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="asset/js/webservice.js"></script>
+    <style type="text/css">
+        
+        img {
+            width:100%;
+            padding:0 8px;
+        }
+        h1 {
+            text-align:center;
+        }
+        .imagename {
+            padding:0 8px;
+            text-align:center;
+        }
+        .image {
+            float: left;
+            padding: 10px;
+            width: 300px;
+            border: 2px solid gray;
+        }
+    </style>
+</head>
+<body>
+    
+        
+        <div class="content">
+            <h1>Slide Folder</h1>
+            <div class="imagefolder" id="imageF">
+               
+            </div>
+        </div>
+    <script>
+
+        function UserService() {
+            this.service = "UserService";
+        }
+
+        UserService.prototype = new WebService();
+
+        UserService.prototype.getAllPresentation = function (PostData, callback, async) {
+            var request = new RequestHeader("getAllPresentation", PostData, callback);
+            return this.PostRequest(request, async);
+        }
+
+        var _userService = new UserService();
+
+        var data = _userService.getAllPresentation("", null, false);
+
+        for (i = 0; i < data.length; i++) {
+           var slide = "<div class='image'>" +
+                   " <div><a href='service/getImage.aspx?Id=" + data[i].slideid + "' target='_blank'><img src='/service/getImage.aspx?Id=" + data[i].slideid + " &type=small' alt='image1' /></a></div>" +
+                    "<div  class='imagename'>" + data[i].slidename + "</div>" +
+                "</div>";
+           $("#imageF").append(slide);
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="asset/js/webservice.js"></script>
+
+    <link href="asset/css/jsoneditor.min.css" rel="stylesheet" type="text/css">
+    <script src="asset/js/jsoneditor.min.js"></script>
+
+    <style type="text/css">
+        img {
+            width: 100%;
+        }
+
+        .imagename {
+            padding: 0 8px;
+            text-align: center;
+        }
+
+        .image {
+            float: left;
+            padding: 10px;
+            width: 300px;
+            border: 2px solid gray;
+        }
+        .textcontent1 {
+            width:300px;
+        }
+        .textcontent2 {
+            width:400px;
+            overflow:hidden;
+        }
+        .text {
+            margin-top:40px;
+        }
+        button {
+            width:100px;
+            padding:8px;
+            border-radius:5px;
+            border-style:none;
+            background-color:green;
+            color:#ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2 style="display:block">API LIST</h2>
+        <div class="content" style="clear:both">
+            <select style="padding:8px;" id="api" onchange="onChangeApi(this)">
+                <option value="">--Select API--</option>
+                <option value="getFolders">Get Folder</option>
+                <option value="createFolder">Create Folder</option>
+                <option value="getCategory">Get Category</option>
+                <option value="createCategory">Create Category</option>
+                <option value="getMetatag">Get Metatag</option>
+                <option value="addUserSlide">Add User Slide</option>
+                <option value="deleteUserSlide">Delete User Slide</option>
+                <option value="getActiveSlides">Get Active Slides</option>
+                <option value="updateSlideOrder">Update Slide Order</option>
+                <option value="getAllPresentation">Get All Recent Slides</option>
+                <option value="updateUserPresentation">Update User Presentation(save, edit)</option>
+                
+                
+            </select>
+            <button type="submit" onclick="executeData();">Execute</button>
+            <a href="/service/downloadActive.aspx?id=0" target="_parent">Download</a>
+        </div>
+    </div>
+    <div class="text">
+        <div class="textcontent1" id="textcontent1" style="width: 400px; height: 400px; float:left;margin-right:50px;"></div>
+        <div class="textcontent2" id="textcontent2" style="width: 400px; height: 400px; float:left;"></div>
+    </div>
+    <script>
+        var options = {
+            modes: ['text', 'code', 'tree', 'form', 'view'],
+            mode: 'code',
+            ace: ace
+        };
+        var editor1 = new JSONEditor(document.getElementById("textcontent1"), options);
+        var editor2 = new JSONEditor(document.getElementById("textcontent2"), options);
+
+        var json = [];
+        json["getFolders"] = json["getCategory"] = json["getMetatag"] = json["getAllPresentation"] = "";
+        json["createFolder"] = json["createCategory"] = "new";
+        json["addUserSlide"] = {
+            userid: 0,
+            slideid: 0,
+            ordernumber: 0
+        };
+        json["getActiveSlides"] = 0;
+        json["updateSlideOrder"] = [{
+            userid: 0,
+            slideid: 0,
+            ordernumber: 0
+        }, {
+            userid: 0,
+            slideid: 0,
+            ordernumber: 0
+        }];
+        // array of object you can pass multiple object if needed
+        json["deleteUserSlide"] = [{
+            userid: 0,
+            slideid: 0
+        }];
+        json["updateUserPresentation"] = {
+            presentationid: 0,
+            status: 2   // 0: inprogress/edit, 1: downloaded, 2: saved
+        };
+
+        var _cb = new CallBack();
+        _cb.func = "showResult";
+
+        function UserService() {
+            this.service = "UserService";
+        }
+        UserService.prototype = new WebService();
+        UserService.prototype.requestByName = function (name,PostData, callback, async) {
+            var request = new RequestHeader(name, PostData, callback);
+            return this.PostRequest(request, async);
+        }
+
+        var _userService = new UserService();
+
+        function executeData() {
+            var apiName = $("#api").val();
+            _userService.requestByName(apiName, editor1.get(), _cb, true);
+        }
+
+        function showResult(res, cb) {
+            editor2.set(res);
+        }
+
+        function onChangeApi(ele) {
+            var index = $(ele).val();
+            editor1.set(json[index]);
+        }
+    </script>
+</body>
+</html>
