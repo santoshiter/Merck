@@ -64,9 +64,6 @@ body{padding: 0px; margin: 0px;  font-family: Verdana; background: #f9f9f9 !impo
     padding: 10px 0px; 
 }
 
-
-
-
 /* header starts here */
 
 .logo .img-responsive{
@@ -144,7 +141,7 @@ body{padding: 0px; margin: 0px;  font-family: Verdana; background: #f9f9f9 !impo
     padding-right: 4px \9;
     padding-left: 3px;
     padding-left: 4px \9;
-    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+ 
 
     margin-bottom: 0;
     -webkit-border-radius: 5px;
@@ -155,12 +152,10 @@ body{padding: 0px; margin: 0px;  font-family: Verdana; background: #f9f9f9 !impo
 #custom-search-input button {
     border: 0;
     background: none;
-    /** belows styles are working good */
     padding: 2px 5px;
     margin-top: 2px;
     position: relative;
     left: -28px;
-    /* IE7-8 doesn't have border-radius, so don't indent the padding */
     margin-bottom: 0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
