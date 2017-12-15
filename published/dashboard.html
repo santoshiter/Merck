@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" >
+    <title>Merck slide sorter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="asset/css/style.css">
+    <link rel="stylesheet" href="asset/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="asset/css/font-awesome.min.css">
+  
+    <script src="asset/js/jquery.min.js"></script>
+    <script src="asset/js/bootstrap.min.js"></script>
+    <script src="asset/js/angular.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="asset/js/webservice.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding mdMarginTop">
+                <div class="container noPadding">
+                   
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 panel with-nav-tabs mdPadddingAll">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding uploadHead">
+                                <h4>Upload</h4>
+                            </div>
+                        <form id="uploadForm">
+                                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding"><input type="file" name="file" placeholder="File*" required accept=".ppt,.pptx" /></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding"><input type="text" name="pname" placeholder="File Name*" required /></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding"><input type="text" name="metatag" placeholder="MetaTag*"  required /></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding"><input type="number" required  placeholder="category*" name="categoryid" /></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding"><input type="number" required  placeholder="Folder*" name="folderid" /></div>
+                                    
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 textCenter">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding"><button class="btn" type="submit">Publish</button></div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding ">
+                                    <progress id="pBar" value="0" max="100"></progress>
+                                </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+    <script type='text/javascript'>
+    /* attach a submit handler to the form */
+    $("#uploadForm").submit(function (event) {
+
+        /* stop form from submitting normally */
+        event.preventDefault();
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: 'service/uploadPresentation.aspx',
+            type: 'POST',
+            data: formData,
+            success: function (data) {
+                alert("ppt upload completed");
+            },
+            xhr: function () {  // custom xhr
+                var xhr = new window.XMLHttpRequest();
+
+                xhr.upload.addEventListener("progress", function (evt) {
+                    if (evt.lengthComputable) {
+                        var percentComplete = evt.loaded / evt.total;
+                        percentComplete = parseInt(percentComplete * 100);
+                        $("#pBar").val(percentComplete);
+                    }
+                }, false);
+                return xhr;
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
+    </script>
+</body>
+</html>
